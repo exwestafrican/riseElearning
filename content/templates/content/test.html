@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load render_content %}
+
+{% block body %}
+
+{% if content.lecture %}
+        {% render_content content %} 
+{% else %}
+    figuring stuff out
+{% endif %}
+    
+
+
+  
+{% endblock body %}
+
+
+
+<div class="container my-4">
+
+
+
+
+    <!-- Drop down menu -->
+    <div class="row">
+         <!-- left item -->
+         <div class="float"><a href="{{chapter.course.get_absolute_url}}">Course</a></div> 
+
+         <!-- central item -->
+        <div class=" mx-auto">
+             <div class="dropdown ">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Chapter Outline
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% for course_content in chapter_content %}
+                        <a class="dropdown-item" href="{{course_content.get_absolute_url}}">{{course_content}}</a>
+                        {% endfor %}
+                    </div>
+             </div>
+        </div>  <!-- end of central item -->
+
+
+
+        <!-- right item -->
+        {% if next_phase.lecture%}
+        <div class="float-right"><a href="{{next_phase.get_absolute_url}}">Next chapter</a></div>
+        {% endif %}
+       
+       
+     
+    </div> <!-- end of row -->
+  
+
+    <div class="my-3">
+      <!-- Content title  -->
+      <h4 >Week {{content.chapter.chapter_number  }} {{content.title}}</h4>
+    </div>
+
+
+    <!-- video -->
+    <div>
+        {% render_content content %} 
+      </div>
+   
+</div>    <!-- end of container div -->
+

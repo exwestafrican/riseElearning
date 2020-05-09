@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load usd_currency %} 
+{% block content %}
+
+<!-- jumbotron -->
+<div class="container my-3 ">
+        {% include "snippets/jumbotron.html" %}
+</div>
+
+
+<div class="container my-3">
+{% if course.chapter_set.all  %} 
+        {% for chapter in course.chapter_set.all %}
+   
+                        <h4> Week {{chapter.chapter_number}} </h4>
+           
+                        <h6 >{{chapter}}</h6>
+
+        <!-- list of chapeters and content -->
+                        <div class="list-group">
+                                
+                                
+                                {% if chapter.contents_set.all %}
+
+                                {% for lesson in chapter.contents_set.all %}
+                                <a  
+                                         {% if profile.is_member or lesson.preview %}
+                                    href="{{lesson.get_absolute_url}}"
+                                 {% endif %} 
+
+                                 class="list-group-item list-group-item-action my-2 col-8">
+                                 <!-- play botton for video and a book for others -->
+                                        {% if lesson.lesson_type == "video"%}
+                                        <b>
+                                          <ion-icon name="play-circle-outline"></ion-icon> {{lesson}}
+                                        </b> 
+                                        {% else %}
+                                        <b>
+                                          <ion-icon name="book-outline"></ion-icon> {{lesson}}
+                                        </b> 
+                                        {% endif %}
+                               
+                                
+                     <!-- if i don't own the course and it's not on preview -->
+                                        
+                                        {% if not lesson.preview and not profile.is_member %}
+                                         <b>
+                                        <ion-icon name="lock-closed-outline"></ion-icon> 
+                                         </b> 
+                                        {% endif %}
+                                                
+                                </a>               
+                                {% endfor %}   
+
+
+
+   <!-- if not list of chapeters and content -->
+                                {% else %}
+                                <a href="{% url 'courses:list' %}" class="list-group-item list-group-item-action my-2 col-8">
+                                        
+                                        <b>
+                                                <ion-icon name="home-outline"></ion-icon> Opps! still working on this, go back home?
+                                        </b> 
+                                        
+                                  </a> 
+                                {% endif %}
+                                        
+                        </div>
+                                        
+        {% endfor %}
+        {% endif %}
+</div>
+           
+
+{% endblock content %}
+

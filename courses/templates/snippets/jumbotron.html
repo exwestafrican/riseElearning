@@ -1,0 +1,57 @@
+{% load usd_currency %} 
+ 
+ <section class="jumbotron rounded-lg text-left">
+    <div class="container">
+      
+      {% if course.chapter_set.all  %}
+        <h1>{{course.title}}</h1>
+        <h5> By {{course.uploaded_by|upper}}</h5>
+        <p class="lead text-muted">
+          {{course.course_discription}}
+        </p>
+        
+   <!-- centered items on jumbotron -->
+        <div class="row">
+          <div class="col-3 mx-auto">
+              <div class="text-center">
+
+
+                {% if profile.is_member %}
+                <p>
+                  <a href="#" class="btn btn-primary my-2">
+                    <small> 
+                      <ion-icon name="play-circle-outline" ></ion-icon> Start
+                    </small> 
+                  </a>    
+                  <!-- add to my list of viewed courses then display preview -->
+
+                  {% else %}
+                  
+                  <a href="#" class="btn btn-primary my-2">
+                    
+                    <small> <ion-icon name="play-circle-outline" ></ion-icon> Preview</small> 
+                    </a>
+              
+                </p>
+            {% endif %} 
+
+
+              </div>
+          </div>
+      </div>
+            
+      {% else %}
+
+
+      <h1>Working on some content for {{course.title}}</h1>
+      <p class="lead text-muted">
+        But you could check out others<a href="{% url 'courses:list' %}"> Just click me!!! </a>
+      </p>
+     
+      {% endif %}
+
+
+      
+      
+    </div>
+  </section>

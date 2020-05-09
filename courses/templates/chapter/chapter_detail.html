@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{{block.super}}|{% block head %}Courses{% endblock head %} 
+
+{% block content %}
+    
+<div class="container my-3">
+
+      {% for lesson in chapter.contents_set.all %}
+       <ul>
+
+              <li>
+                  <!-- lesson topics -->
+                <b>{{lesson}}</b><br>
+                <small>   
+                <a href= "{{lesson.get_absolute_url}}"> View {{lesson.lesson_type}}</a>
+                </small>
+              </li>
+
+          </ul>
+      {% endfor %}
+
+</div>
+{% endblock content %}

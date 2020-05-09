@@ -1,0 +1,51 @@
+<nav aria-label="...">
+    <ul class="pagination justify-content-end">
+      
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?{% if search_input %}q={{search_input}}&{%endif%}page=1">First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?{% if search_input %}q={{search_input}}&{%endif%}page={{ page_obj.previous_page_number }}">{{page_obj.previous_page_number}}</a>
+      </li>
+      {% endif %}
+  
+      <li class="page-item active">
+        <span class="page-link">
+          {{page_obj.number}}
+          <span class="sr-only">(current)</span>
+        </span>
+      </li>
+  
+      {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?{% if search_input %}q={{search_input}}&{%endif%}page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?{% if search_input %}q={{search_input}}&{%endif%}page={{ page_obj.paginator.num_pages }}">Last</a>
+      </li>
+      {% endif %}
+  
+    </ul>
+  </nav>
+
+
+
+  <!-- <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?{% if search_input %}q={{search_input}}&{%endif%}page=1">&laquo; first</a>
+            <a href="?{% if search_input %}q={{search_input}}&{%endif%}page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?{% if search_input %}q={{search_input}}&{%endif%}page={{ page_obj.next_page_number }}">next</a>
+            <a href="?{% if search_input %}q={{search_input}}&{%endif%}page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div> -->

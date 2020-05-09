@@ -1,0 +1,67 @@
+
+ {% load humanize %} 
+ {% load usd_currency %} 
+ 
+ <ul class="list-unstyled">
+
+    <li class="media">
+    {% if course.images %}
+    <img src="{{course.images.url}}" alt="" class="mr-3" alt="{{course}}" width="25%" height="25%">
+    {% endif %}
+    
+    
+
+      <div class="media-body">
+        <h5 
+        
+            class="mt-0 mb-1">{{course.title}}
+            
+            <br>
+           
+
+                {% if user.is_authenticated %}
+
+                  {% if profile.is_member or course.free %}
+                  
+                  <button type="button" class="btn btn-sm btn-outline-secondary"> 
+                    <a href="{{course.get_absolute_url}}"> View</a>
+                  </button>
+                  {% else %}
+                  <button type="button" class="btn btn-sm btn-outline-secondary"> 
+                    <a href="{{course.get_absolute_url}}"> Preview</a>
+                  </button>
+                  {% endif %} 
+
+                {% else %}
+                <button type="button" class="btn btn-sm btn-outline-secondary"> 
+                  <a href="{{course.get_absolute_url}}"> Preview</a>
+                </button>
+                {% endif %}
+  
+           
+        
+        </h5>
+
+        <p> 
+          
+           {{ course.course_discription|truncatechars:250 }}
+        </p>
+       
+
+        {% if course.number_of_chapters < 2  %}
+        <small class="text-muted">{{course.number_of_chapters}} chapter</small>
+        {% else %}
+        <small class="text-muted">{{course.number_of_chapters}} chapters</small>
+        {% endif %}
+
+     
+        
+      </div>
+  
+     
+
+    </li>
+  </ul>
+ 
+
+  

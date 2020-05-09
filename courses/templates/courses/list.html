@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block head %}{{block.super}}|Courses{% endblock head %} 
+ 
+{% block content %}
+
+<div class="container my-4">    
+
+ 
+  {% include "snippets/paginator.html" %}
+            <div class="row">
+              
+              {% for course in courses %}
+              <div class="col-lg-6 col-sm-12">
+              <div class="shadow p-3 mb-5 bg-white rounded">
+                    {% include "snippets/media.html" %}
+                   
+                   
+                </div>   
+              
+              </div>
+                
+              {% endfor %}
+           
+          </div>
+          <!-- page pagination -->
+          {% include "snippets/paginator.html" %}
+
+
+
+
+</div>
+
+   
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load render_content %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load time_elapsed %}
+
+{% block linksheets %}
+<link rel="stylesheet" href="{% static 'content/css/content_detail.css' %}">
+
+{% endblock linksheets %}
+{% block content %}
+
+  <div class="flexBoxWrapper">
+    <div class="sideNavBar">
+      
+      <div id="tagDiv">
+
+        <a href="{% url 'courses:list' %}">Courses </a> <svg role="img" aria-hidden="true" class="_giiub5" focusable="false" width="8" height="8" viewBox="0 0 10 10"><path fill="#21242c" d="M6.7,8.8L3,5l3.6-3.8c0.3-0.3,0.2-0.7,0-1c-0.2-0.3-0.7
+          -0.2-1,0l-4,4.3c-0.2,0.3-0.2,0.7,0,0.9l4.1,4.3c0.3,0.3,0.7,0.3,1,0
+          C7,9.5,7,9.1,6.7,8.8z"></path></svg>
+
+          <a href="">Current Course</a> <svg role="img" aria-hidden="true" class="_giiub5" focusable="false" width="8" height="8" viewBox="0 0 10 10"><path fill="#21242c" d="M6.7,8.8L3,5l3.6-3.8c0.3-0.3,0.2-0.7,0-1c-0.2-0.3-0.7
+            -0.2-1,0l-4,4.3c-0.2,0.3-0.2,0.7,0,0.9l4.1,4.3c0.3,0.3,0.7,0.3,1,0
+            C7,9.5,7,9.1,6.7,8.8z"></path></svg>
+            
+            {% if previous_chapter %}
+            <a href="{{previous_content.get_absolute_url}}">{{previous_chapter}}</a> <svg role="img" aria-hidden="true" class="_giiub5" focusable="false" width="8" height="8" viewBox="0 0 10 10"><path fill="#21242c" d="M6.7,8.8L3,5l3.6-3.8c0.3-0.3,0.2-0.7,0-1c-0.2-0.3-0.7
+              -0.2-1,0l-4,4.3c-0.2,0.3-0.2,0.7,0,0.9l4.1,4.3c0.3,0.3,0.7,0.3,1,0
+              C7,9.5,7,9.1,6.7,8.8z"></path></svg>
+            {% endif %}
+      
+      </div>
+
+      <div class='chapterContentSeperator'>
+        {% for myContent in contents %}
+        <div class="chapterContent"> 
+              
+          {% if myContent.lesson_type == "video" %} <ion-icon name="play"></ion-icon> {% else %}<ion-icon name="book-outline"></ion-icon> {% endif %}
+              <a href="{{myContent.get_absolute_url}}" class="contentLinks"> {{myContent}} </a> 
+          </div>
+        {% endfor %}
+      </div> <!-- chapterContentSeperator -->
+
+
+                <div class="nextLesson">
+                <a href="{{next_content.get_absolute_url}}">
+                  <small> Next Lesson</small>
+                  
+                  {% if next_chapter %}
+                  <p>{{next_chapter}}</p>
+                  {% endif %}
+                  </a>
+                </div>
+    </div>   <!-- end of side bar nav -->
+  
+        <div class="Videodiv">
+
+          <div class="embed-responsive embed-responsive-21by9">
+            
+            {% if content.lecture %}
+            {% render_content content %}   
+            {% else %}
+              <h1 style="color:white ;">Nothing Here</h1>
+            {% endif %}
+              
+                 
+
+            </div>
+
+                  <div class="belowVideoDiv">
+                    <h1>{{current_chapter}}</h1>
+                   
+
+                       
+                    <h6 class="h6Highlight">Chapter Summary</h6> 
+                    <div class='horizontalRule'>
+                         <p>{{current_chapter.chapter_description}}  Created by {{current_chapter.course.uploaded_by}}.</p>
+                       </div>
+                    
+                         <div class="socialMedia">
+                             <span>Share on</span>
+                             <a href="https://twitter.com/intent/tweet?text={{content.get_share_message|safe}}"  target="_blank"><ion-icon name="logo-twitter"></ion-icon>Twitter</a>
+                             <a href=""><ion-icon name="navigate-outline"></ion-icon>Telegram</a>
+                             <a href=""><ion-icon name="logo-instagram"></ion-icon>Instagram</a>
+                         </div>
+                     
+
+              
+              {% if main_page %}
+                {% include "snippets/comment.html" %}
+              {% else %}
+              {% include "snippets/comment_thread.html" %}
+              {% endif %}
+                
+
+               
+
+                
+                        
+                
+               </div> <!-- end of below video div -->
+     </div> <!-- end of vidoe nav -->
+
+    
+
+</div> <!-- end of flex box wrapper -->
+
+<script type="text/javascript"  src="{% static 'content/js/content_detail.js' %}"></script>
+{% endblock content %}
+     
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
