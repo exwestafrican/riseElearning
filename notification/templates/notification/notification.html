@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% load time_elapsed %}
+
+
+{% block linksheets %}
+<link rel="stylesheet" href="{% static 'notification/css/notification.css' %}">
+{% endblock linksheets %}
+
+{% block content %}
+<div class="container newFont">
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"> <h4>Notifications</h4> </th>
+      </tr>
+    </thead>
+
+    <tbody id=notificationList>
+        {% for notification in notifications %}
+      <tr>
+
+        <td>
+<a href= "{% if notification.action_object_id %}{{notification.get_absolute_url}}{% endif %}" class="contentLinks">
+        <p>{{notification}}  </p>
+            <small style="display:block;">
+            {% if notification.read %}
+            <ion-icon id=read name="checkmark-outline"></ion-icon>
+            {% else %}
+            <ion-icon name="mail-unread-outline"></ion-icon>
+            {% endif %}
+            {{notification.created|time_elapsed}}
+            </small>
+          </a>
+        </td>
+    
+      </tr>
+      {% endfor %}  
+
+    </tbody>
+  </table>
+
+</div>
+{% endblock content %}
