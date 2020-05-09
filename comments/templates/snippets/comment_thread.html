@@ -1,0 +1,70 @@
+
+{% load time_elapsed %}
+
+{% load static %}
+
+   
+<div class="commentFlexWrapper2 needMargin">
+   <img  id="avatar" src="{% static 'content/img/belerin.png' %}"alt="">
+   <div class="detailList">
+   <h6>{{main_comment.user.first_name}}<span> <small ></small></span></h6>
+   <p>{{main_comment.comment_content}}</p>
+   <div>
+  
+  {% if request.user.is_authenticated %}
+     <small class="baseSmall replyButton">Reply</small>
+  {% endif %}
+    
+   <small class="baseSmall commentButton">27 comments</small>
+ </div>   
+
+
+ 
+    <!-- start of reply form -->
+   {% if request.user.is_authenticated %}
+   <form action="" method="POST" id="myComment" >
+     {% csrf_token %}
+     <div class="replygroup">  
+       {{comment_form}}
+       <input type="hidden" name="main_comment" value='{{main_comment.id}}'>
+     <div  class="askAQuestion">
+       <button >Comment</button>
+     </div>
+   </div>  <!-- end of reply group -->
+
+  
+   </form>
+   {% else %}
+   <div  class="loginToAsk replygroup">
+    <a href="{% url 'account_login' %}" class="signUpWrapper">Login to Reply</a>
+   </div>
+   {% endif %}
+
+     <!-- end of reply form -->
+
+     <hr>
+
+  
+
+    <div class="commentFlexWrapper2 needMargin commentReplyList ">  <!-- beiging of comment image split -->
+    {% for reply in main_comment.comment_replies %} 
+   
+     <div class="detailList ">
+       <h6>{{reply.user.first_name}}<span> <small >{{reply.created|time_elapsed}}</small></span></h6>
+       <p> {{reply.content}}</p>
+     </div>  <!-- end of detail list -->
+     {% endfor %}  
+  
+   </div>   <!-- end of comment image split -->
+
+
+      
+
+</div>   <!-- end of detail list -->
+<!-- end of comment for loop -->
+
+    
+
+</div><!-- end of img and textsplit -->
+
+</div> <!-- end of commentSection -->
