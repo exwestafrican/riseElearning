@@ -1,0 +1,54 @@
+{% load static %}
+{% load humanize %} 
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href= "{% static 'main.css' %}" >
+    
+    {% block linksheets %}
+      
+    {% endblock linksheets %}
+    
+    {% include "base/favicons.html" %}
+    {% include "base/css.html" %}
+
+         <title>
+             {% block head %}Rise{% endblock head %} 
+        </title>
+  </head>
+
+  <body>
+    
+   
+    {% include "base/navbar.html" %}  
+  <div id="myContainer">
+   
+      <div id="mainStuff">
+      
+           {% block content %}
+          
+            <!--  {% include "snippets/jumbotron.html" %}
+    
+          
+            <div class="container">
+                <div class="row">
+                  {% for course in courses %}
+                        {% include "snippets/cards.html" %}
+                  {% endfor %}
+              </div>
+            </div> -->
+            
+                 
+          {% endblock content %}
+        </div>   
+  </div>         
+  
+
+  <script type="text/javascript" src= "{% static 'main.js' %}"></script>
+   {% include "base/footer.html" %}
+   {% include "base/js.html" %}
+  </body>
+</html>

@@ -1,4 +1,8 @@
 # for Macs
+.DS_store
+bin/
+include/
+pip-selfcheck.json
 
 
 # Byte-compiled / optimized / DLL files
