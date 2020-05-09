@@ -1,0 +1,37 @@
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="signUpWrapper">
+
+    <div class="">
+      
+      <h1>Create your account?</h1>
+      <small class="smallTopMargin">Alright,let's set this up! Tell us a bit about yourself. </small> 
+    <form  id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+       
+        {{ form|crispy}}
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button type="submit" >Join the club</button>
+      </form>
+      <small>
+        <p>Hey, it's nice to have you here, By joining Investment Club, you have made the first and crusial step towards financial security.</p>
+        <p> Next, stop, tell us a little about yourself.</p>
+      </small>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+{% url 'home' as home_url %}
+{% url 'courses:list' as courses_url %}
+{% url 'category:list'  as category_url %}
+{% url 'account_signup'  as signup_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_logout' as logout_url %}
+{% url 'notifications:all_notifications' as notification_url %}
+
+
+<nav class="myNav">
+  <ul class="myMenu">
+    <li class="myLogo"> <a href="#">Rise</a> </li>
+    <li class="item {% if request.path ==  home_url %} itsActive {%endif%}"  ><a href="{% url 'home' %}">Home</a> </li>
+    <!-- <li class="item"> <a href="#">Search</a> </li> -->
+    <li class="item {% if request.path ==  courses_url %} itsActive {%endif%}" > <a href=" {{courses_url}}">Courses</a> </li>
+    <li class="item"> <a href="#">Pricing</a> </li>
+
+    
+    {% if request.user.is_authenticated %}
+        <li class="item {% if request.path ==  notification_url %} itsActive {%endif%} "><a href="{{notification_url}}"> <img src="" alt="">Hey, {{request.user.first_name}} <span class="badge badge-light">4</span> </a> </li>
+        <li class="item myButton itSecondary"> <a href="{{logout_url}}">Logout</a> </li>
+    {% else %}
+        <li class="item myButton"> <a href="{{signup_url}}">Sign Up</a> </li>
+        <li class="item myButton itSecondary"> <a href="{{login_url}}">Login</a> </li>
+    {% endif %}
+      
+    
+
+    
+
+    <li class="myToggler"><span class="bars"></span></li>
+    <form action="{% url 'search:query' %}" >
+    <input id="navSearch" type="search" name ='q' value="{{request.GET.q}}" placeholder="Try, treasury bills, personal finance or business stuff..">
+  </form>
+  </ul>
+</nav>

@@ -1,0 +1,181 @@
+
+.flexBoxWrapper{
+    display: flex;
+    height: 100rem;
+    margin: 0;
+    width: 100%;
+    justify-content: space-around;
+    /* background-color: crimson; */
+    
+}
+
+.Videodiv{
+    width: 80%;
+    background-color: yellow;
+  
+}
+
+.Videodiv div:nth-child(1){
+    /* background-color: blueviolet; */
+    height: 30%;
+    width: 100%;
+}
+
+.sideNavBar{
+    background-color: pink;
+    width: 20%;
+    padding: 25px 0;
+    
+
+}
+
+
+.sideNavBar a{
+    color: inherit;
+    text-decoration: none;    
+}
+
+
+.sideNavBar a:hover{
+    text-decoration: none;
+    color: inherit;
+}
+
+.contentLinks {
+    
+    display: block;
+    padding: 15px 5px;
+   
+}
+
+
+.contentLinks:hover, .nextLesson:hover{
+    background-color:  #fff4dd;
+
+}
+
+
+.chapterContent{
+    margin: 25% 0 0 0;
+    border: 1px solid;
+    border-color:  #555555 transparent  #555555 transparent ;
+}
+
+.nextLesson{
+    padding: 7% 0 1% 5%;
+}
+
+.belowVideoDiv{
+    background-color: lightsalmon;
+    margin: 2% 20%;
+}
+
+table,tbody,tr,td{
+    display: block;
+}
+
+td {
+    border: 1px solid;
+    border-color:  #ccc transparent transparent transparent ;
+   
+  }
+
+
+td p {
+    margin: 5px 0;
+}
+
+
+.socialMedia{
+   margin: 0 0 10px 0;
+}
+
+.socialMedia a{
+    text-decoration: none;
+    margin: 0 15px;
+    color: inherit;
+   
+}
+
+ion-icon {
+   
+    vertical-align:middle;
+    padding: 0 5px;
+    
+  }
+
+.commentFlexWrapper{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+#myComment {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 83%;
+}
+
+
+  .textAreaBox{
+    box-sizing: border-box !important;
+    /* resize: vertical !important; */
+    width: 100% !important;
+    font-size: 16px !important;
+    line-height: 1.38 !important;
+
+    padding: 8px 12px !important;
+    margin: 15px 0px 0px 0px !important;
+    width: 100%;
+    height: 6rem;  /* change to 6 */
+  
+    overflow: auto !important;
+    border-radius: 5px;
+    border-style: solid;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+   
+    
+    
+  }
+  
+
+  #avatar {
+      width:  64px;
+      height: 64px;
+      /* background-image: url("../img/belerin.7ca143e68995.png"); */
+      background-position: center;
+      border-radius: 50%;
+      background-size: cover;
+      margin: 15px 10px 0 10px;
+      vertical-align: baseline;
+    
+  }
+
+  #myComment div {
+         width: 100%;
+         text-align: right;
+         /* border: solid rgba(33,36,44,0.16); */
+         border: 1px solid;
+         padding: 12px 16px;
+         box-sizing: border-box;
+         position: relative;
+         border-top: none;
+         border-bottom-right-radius: 4px;
+         border-bottom-left-radius: 4px;
+         border-color: transparent #555555 #555555 #555555;
+         display: none;
+  }
+
+#myComment button {
+        background-color:#1865f2;
+        border-radius: 5px;
+        padding: 0px 16px;
+        height: 40px;
+        color:#ffffff;
+        border: none;
+        justify-content: center;
+  }
