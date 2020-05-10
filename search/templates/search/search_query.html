@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container my-3">
+
+    {% if search_input %}
+
+    <!-- side- bar  -->
+    <div class="row">
+        <div class="mb-1 float-left">
+        <p>Here's what we got for <b>{{search_input}}</b></p>
+        <small><b>{{courses.count}}</b> results matched this search</small>
+        </div>
+    </div>
+    {% include "snippets/paginator.html" %}
+
+   
+    <div class="row">       
+        {% for course in page_obj %}
+        <div class="col-lg-6 col-sm-12">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+              {% include "snippets/media.html" %}
+          </div>   
+        </div>
+        {% endfor %}
+      <div>
+       
+       
+    {% else %}
+    <p>Not sure what you're looking for? check out all our courses <b><a href="{% url 'courses:list' %}">here </b></a> </p>
+    
+
+    {% endif %}
+
+    
+</div>
+
+
+  
+{% endblock content %}
